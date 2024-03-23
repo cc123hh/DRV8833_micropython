@@ -1,7 +1,10 @@
 # DRV8833_micropython
+## Introduction
 Simple application of DRV8833 module may have problems writing module classes for the first time.
+![DRV8833_module](./images/DRv8833.jpg)
 
-## How to use
+# How to use
+
 Here's a simple example:
 ```
 # Import library
@@ -38,6 +41,5 @@ mt.stop_a()
 # Stop all
 mt.stop()
 ```
-
-## Some unresolved issues
-There is no strong setting for STBY: Automatically changing the value will enable STBY, and you can change it yourself if you need to. I didn't have this need to consider
+# Some unanswered questions
+There is no strong setting for STBY (because STBY can be directly connected to the positive electrode) : Automatically changing the value will enable STBY, and you can change it yourself if necessary. I didn't have this need to consider
