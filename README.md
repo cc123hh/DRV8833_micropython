@@ -1,7 +1,7 @@
 # DRV8833_micropython
 ## Introduction
 Simple application of DRV8833 module may have problems writing module classes for the first time.
-![DRV8833_module](./images/DRv8833.jpg)
+![DRV8833_module](./images/drv8833.jpg)
 
 # How to use
 
