@@ -120,4 +120,3 @@ class DRV8833:
             e.start_B()
         else:
             return int(100-100 * (e.a_duty_u16/e._max))
-
