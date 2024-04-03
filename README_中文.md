@@ -9,37 +9,42 @@ DRV8833 模块的简单应用，可能有问题，第一次写模块类。
 ```
 # 导入库
 from drv8833 import DRV8833
-from time import time
 
-# 初始化类
-mt = DRV8833([(4,5),(2,3)], 10)
+# 初始化类, 参数是[电机A,电机B]的引脚，STBY引脚,pwm频率
+# 这里a,b是(4,5)和(2,3)
+mt = DRV8833([(4,5),(2,3)], 10,20_000)
 
-# 开始A控制
-mt.start_a()
+# start(motor_index)
+# 开始两个电机控制
+mt.start()
 
-# 0~100 平均比例划分65535
-mt.a_speed(10)
+# speed(motor_index, speed)
+# 速度范围 -100 ~ 100
+mt.speed(0,50)
 
+# speed_u16(motor_index, speed)
 # 用原来的的PWM.duty_u16控制
-mt.b_speed_u16(32767)
+mt.speed_u16(1,32767)
 
 # 获取0-100划分的速度值
-speed_a = mt.a_speed()
+speed_a = mt.speed()
 # 获取pwm的duty_u16划分的速度值
-speed_b = mt.a_speed_u16()
+speed_b = mt.speed_u16()
 
 # 显示速度
 print(speed_a)
 print(speed_b)
 
 # a反转
-mt.a_reverse()
+mt.reverse(0)
 
 # 停止A控制
-mt.stop_a()
+mt.stop(0)
 
 # 停止所有
 mt.stop()
 ```
+# 修复的问题
+STBY修复，简化了一些方法的使用方法：例如`speed(0,100)=speed_A(100)`
 # 一些没解决的问题
-没有对STBY有强设置(因为STBY可以直接接正极)：自动改变值会开启STBY，有需要的可以自己改。我没有这个需求没有考虑
+代码好像有点冗余混杂

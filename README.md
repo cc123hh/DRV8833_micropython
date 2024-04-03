@@ -9,37 +9,42 @@ Here's a simple example:
 ```
 # Import library
 from drv8833 import DRV8833
-from time import time
 
-# Initialize the class
-mt = DRV8833([(4,5),(2,3)], 10)
+# Initialization class, parameters are [motor A, motor B] pin, STBY pin,pwm frequency
+Here a,b are (4,5) and (2,3).
+mt = DRV8833([(4,5),(2,3)], 10,20_000)
 
-# Start A control
-mt.start_a()
+# start(motor_index)
+# Start two motor controls
+mt.start()
 
-# 0 to 100 Average ratio partition 65535
-mt.a_speed(10)
+# speed(motor_index, speed)
+# Speed range -100 ~ 100
+Mt. Speed (0, 50)
 
+# speed_u16(motor_index, speed)
 # Use the original PWM.duty_u16 control
-mt.b_speed_u16(32767)
+Mt. Speed_u16 (1327 67).
 
 # Get the speed value for the 0-100 partition
-speed_a = mt.a_speed()
+speed_a = mt.speed()
 # Get the speed value of the duty_u16 partition of pwm
-speed_b = mt.a_speed_u16()
+speed_b = mt.speed_u16()
 
 # Display speed
 print(speed_a)
 print(speed_b)
 
 # a reversal
-mt.a_reverse()
+mt.reverse(0)
 
 # Stop A control
-mt.stop_a()
+mt.stop(0)
 
 # Stop all
 mt.stop()
 ```
+# Fixed issues
+STBY fixes that simplify the use of some methods: for example, 'speed(0,100)=speed_A(100)'
 # Some unanswered questions
-There is no strong setting for STBY (because STBY can be directly connected to the positive electrode) : Automatically changing the value will enable STBY, and you can change it yourself if necessary. I didn't have this need to consider
+The code seems a little redundant and jumbled
