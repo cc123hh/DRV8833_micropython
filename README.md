@@ -1,50 +1,52 @@
-# DRV8833_micropython
+# DRV8833 MicroPython Application
 ## Introduction
-Simple application of DRV8833 module may have problems writing module classes for the first time.
-![DRV8833_module](./images/drv8833.jpg)
+This is a simple application for the DRV8833 module, which may contain some issues as it is my first attempt at writing a class for a module.
+![DRV8833 Module](./images/drv8833.jpg)
 
-# How to use
+# How to Use
 
-Here's a simple example:
+Here is a simple example:
 ```
-# Import library
+# Import the library
 from drv8833 import DRV8833
 
-# Initialization class, parameters are [motor A, motor B] pin, STBY pin,pwm frequency
-Here a,b are (4,5) and (2,3).
-mt = DRV8833([(4,5),(2,3)], 10,20_000)
+# Initialize the class with the pins for [Motor A, Motor B], the STBY pin, and the PWM frequency
+# Here, a, b are (4,5) and (2,3) respectively
+mt = DRV8833([(4,5),(2,3)], 10, 20_000)
 
 # start(motor_index)
-# Start two motor controls
+# Start control for both motors
 mt.start()
 
 # speed(motor_index, speed)
-# Speed range -100 ~ 100
-Mt. Speed (0, 50)
+# The speed range is -100 to 100
+mt.speed(0, 50)
 
 # speed_u16(motor_index, speed)
-# Use the original PWM.duty_u16 control
-Mt. Speed_u16 (1327 67).
+# Control using the original PWM.duty_u16
+mt.speed_u16(1, 32767)
 
-# Get the speed value for the 0-100 partition
+# Get the speed value divided into -100~100 range
 speed_a = mt.speed()
-# Get the speed value of the duty_u16 partition of pwm
+# Get the speed value divided by pwm's duty_u16
 speed_b = mt.speed_u16()
 
-# Display speed
+# Display the speeds
 print(speed_a)
 print(speed_b)
 
-# a reversal
+# Reverse Motor A
 mt.reverse(0)
 
-# Stop A control
+# Stop controlling Motor A
 mt.stop(0)
 
-# Stop all
+# Stop all motors
 mt.stop()
 ```
-# Fixed issues
-STBY fixes that simplify the use of some methods: for example, 'speed(0,100)=speed_A(100)'
-# Some unanswered questions
-The code seems a little redundant and jumbled
+
+# Issues Fixed
+The STBY issue has been resolved, and the usage of some methods has been simplified, for example, `speed(0,100) = speed_A(100)`
+
+# Outstanding Issues
+The code seems to be somewhat redundant and mixed.
