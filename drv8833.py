@@ -139,7 +139,12 @@ class DRV8833:
         return e.direction_b
 
     def __calc_speed(e, speed):
-        return int(((100 - speed) / 100) * 65535)
+        if speed < 0:
+            speed = not speed
+            result = not int(((100 - speed) / 100) * e._max)
+        else:
+            result = int(((100 - speed) / 100) * e._max)
+        return result
 
     def direction(e, motor_index, dirction=None):
         if motor_index == 0:
