@@ -17,10 +17,10 @@ mt.speed(0,50)
 # 用原来的的PWM.duty_u16控制
 mt.speed_u16(1,32767)
 
-# 获取0-100划分的速度值
-speed_a = mt.speed()
-# 获取pwm的duty_u16划分的速度值
-speed_b = mt.speed_u16()
+# 获取电机A0-100划分的速度值
+speed_a = mt.speed(0)
+# 获取电机Apwm的duty_u16划分的速度值
+speed_b = mt.speed_u16(0)
 
 # 显示速度
 print(speed_a)
