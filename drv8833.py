@@ -140,8 +140,7 @@ class DRV8833:
 
     def __calc_speed(e, speed):
         if speed < 0:
-            speed = not speed
-            result = not int(((100 - speed) / 100) * e._max)
+            result = int(((100 + speed) / 100) * e._max)
         else:
             result = int(((100 - speed) / 100) * e._max)
         return result
@@ -160,11 +159,13 @@ class DRV8833:
             raise Exception("No this motor")
 
     def direction_A(e, direction: bool = None):
-        e.direction_a = bool(direction)
+        if direction != None:
+            e.direction_a = bool(direction)
         return e.direction_a
 
     def direction_B(e, direction: bool = None):
-        e.direction_b = bool(direction)
+        if direction != None:
+            e.direction_b = bool(direction)
         return e.direction_b
 
     def speed(e, motor_index, s):
@@ -205,7 +206,7 @@ class DRV8833:
         if speed != None:
             if speed > 100:
                 raise SpeedOverRangeError(f"Speed too big, range:-100~100. Given Speed:{speed}")
-            elif speed < 0:
+            elif speed < -100:
                 raise SpeedOverRangeError(
                     f"Speed too small, range:-100~100. Given Speed:{speed}"
                 )
@@ -219,4 +220,3 @@ class DRV8833:
             return speed
         else:
             return int(100 - 100 * (e.a_duty_u16 / e._max))
-
